@@ -1,0 +1,243 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('backend:server');
+var http = require('http');
+const mongoose = require('mongoose');
+
+Restaurant = require('../model/restaurant.js');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3001');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+
+
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
+
+//create socket.io
+const io = require('socket.io')
+serverSocket = io.listen(server);
+
+
+//database
+mongoose.connect('mongodb+srv://ChunYu:dbeg5338@cluster0-qh2pz.mongodb.net/test?retryWrites=true&w=majority', {
+    useNewUrlParser: true
+})
+
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+db.once('open', () => {
+  console.log('MongoDB connected!')
+  serverSocket.on('connection', socket => {
+    console.log("socket connected");
+    
+    var choose_result = [];
+
+    socket.emit('message',{'message':'hello world'});
+ 
+    socket.on('add', (data) => {
+      console.log("add get");
+        var new_restaurant = new Restaurant({ 
+        name: data.name, 
+        main_dish: data.main_dish,
+        price: data.price,
+        drink: data.drink,
+        distance: data.distance,
+        lat: data.lat,
+        lng: data.lng
+    
+      });
+      new_restaurant.save(function(err){
+        if (err) return handleError(err);
+      })
+
+     
+      console.log(new_restaurant);  
+    });
+
+    socket.on('find',(data) => {
+     
+    
+      choose_result = data;
+     
+      var query = Restaurant.find();
+
+      if(data.name != "default"){
+        query.find({ 'name': data.name });
+      }
+
+      if(data.main_dish != 'default'){
+         query.find({ 'main_dish': data.main_dish });
+      }
+
+      if(data.drink != 'default'){
+         query.find({ 'drink': data.drink });
+      }
+
+      if(data.price != 5000){
+        query.find().where('price').lt(data.price+20);
+        console.log(data.price+20);
+      }
+
+     if(data.distance != 1000){
+        query.find().where('distance').lt(data.distance+1);
+      }
+
+      query.select('name');
+      query.limit(10);
+
+      query.exec(function (err, result) {
+        if(err) return handleError(err);
+        else{
+          socket.emit("choosed",result)
+        }
+      });
+
+      
+
+    })
+
+    socket.on('choose_map',()=>{
+     
+      var  data = choose_result;
+      
+        var query_map = Restaurant.find();
+
+        if(data.name != 'default'){
+          query_map.find({ 'name': data.name });
+       }
+ 
+
+        if(data.main_dish != 'default'){
+           query_map.find({ 'main_dish': data.main_dish });
+        }
+  
+        if(data.drink != 'default'){
+           query_map.find({ 'drink': data.drink });
+        }
+  
+        if(data.price != 5000){
+          query_map.find().where('price').lt(data.price+20);
+        }
+  
+       if(data.distance != 1000){
+          query_map.find().where('distance').lt(data.distance+1);
+        }
+  
+        query_map.select('name lat lng');
+        query_map.limit(10);
+  
+        query_map.exec(function (err, result) {
+          if(err) return handleError(err);
+          else{
+            socket.emit("choosed_map",result)
+          }
+        });
+      
+      
+      
+      
+      
+    })
+
+    socket.on('All_map',()=>{
+      var query = Restaurant.find();
+
+      query.select('name lat lng');
+
+      query.exec(function (err, result) {
+        if(err) return handleError(err);
+        else{
+          socket.emit("All_coords",result);
+          console.log(result);
+        }
+      });
+  
+    })
+
+
+  });
+}); 

@@ -1,0 +1,303 @@
+#header{
+  margin: 0 auto; 
+  width : 200px;
+  color: orangered;
+}
+
+
+
+.button_list{
+  margin: 0 auto; 
+  width:100px;
+ 
+}
+
+
+#start_img{
+
+  margin: 0 auto; 
+  width:100%;
+  height:100%;
+}
+
+#start_btn{
+  width : 255px;
+  position: absolute;
+  top:44%;
+  left:8%;
+}
+
+#start_btn:hover{
+  width : 265px;
+  position: absolute;
+  top:43%;
+  left:7%;
+}
+
+
+#back_home_btn{
+  width : 115px;
+  position: absolute;
+  top:70%;
+  left:80%;
+}
+
+#back_home_btn:hover{
+  width : 125px;
+  position: absolute;
+  top:69%;
+  left:79%;
+}
+
+
+#add_btn{
+  width : 115px;
+  position: absolute;
+  top:65%;
+  left:40%;
+
+}
+
+
+#add_btn:hover{
+  width : 125px;
+  position: absolute;
+  top:64%;
+  left:39%;
+
+}
+
+#choose_btn{
+  width : 115px;
+  position: absolute;
+  top:15%;
+  left:40%;
+
+}
+
+#choose_btn:hover{
+  width : 125px;
+  position: absolute;
+  top:14%;
+  left:39%;
+
+}
+
+
+#all_map_btn{
+  width : 115px;
+  position: absolute;
+  top:40%;
+  left:40%;
+
+}
+
+#all_map_btn:hover{
+  width : 125px;
+  position: absolute;
+  top:39%;
+  left:39%;
+
+}
+
+#All_Map_back_home_btn{
+  width : 115px;
+  position: absolute;
+  top:39%;
+  left:82%;
+}
+
+#All_Map_back_home_btn:hover{
+  width : 125px;
+  position: absolute;
+  top:38%;
+  left:81%;
+}
+
+#main_dish_choose_form{
+  position: absolute;
+  top:0%;
+  left:21.5%;
+
+}
+
+#price_choose_form{
+  position: absolute;
+  top:15%;
+  left:21.5%;
+}
+
+#distance_choose_form{
+  position: absolute;
+  top:30%;
+  left:21.5%;
+}
+
+#drink_choose_form{
+  position: absolute;
+  top:45%;
+  left:21.5%;
+}
+
+#submit_choose_btn{
+  width:115px;
+  position: absolute;
+  top:60%;
+  left:21.5%;
+
+}
+
+#submit_choose_btn:hover{
+  width:125px;
+  position: absolute;
+  top:59%;
+  left:20.5%;
+
+}
+#choose_result_btn{
+  width:115px;
+  position: absolute;
+  top:25%;
+  left:61.5%;
+}
+
+#choose_result_btn:hover{
+  width:125px;
+  position: absolute;
+  top:24%;
+  left:60.5%;
+}
+
+#re_choose_btn{
+  width:115px;
+  position: absolute;
+  top:51%;
+  left:80%;
+}
+#re_choose_btn:hover{
+  width:125px;
+  position: absolute;
+  top:50%;
+  left:79%;
+}
+
+#choose_map_btn{
+  width:115px;
+  position: absolute;
+  top:31%;
+  left:80%;
+}
+
+#choose_map_btn:hover{
+  width:125px;
+  position: absolute;
+  top:30%;
+  left:79%;
+}
+
+#Choose_Map_back_home_btn{
+  width : 115px;
+  position: absolute;
+  top:39%;
+  left:82%;
+}
+
+#Choose_Map_back_home_btn:hover{
+  width : 125px;
+  position: absolute;
+  top:38%;
+  left:81%;
+}
+
+#name_add_form{
+  position: absolute;
+  top:10%;
+  left:41.5%;
+}
+#main_dish_add_form{
+  position: absolute;
+  top:25%;
+  left:11.5%;
+}
+#price_add_form{
+  position: absolute;
+  top:25%;
+  left:41.5%;
+}
+#distance_add_form{
+  position: absolute;
+  top:25%;
+  left:71.5%;
+}
+
+#drink_add_form{
+  position: absolute;
+  top:50%;
+  left:11.5%;
+}
+
+#lat_add_form{
+  position: absolute;
+  top:50%;
+  left:41.5%;
+}
+
+#lng_add_form{
+  position: absolute;
+  top:50%;
+  left:71.5%;
+}
+
+#submit_add_btn{
+  width : 115px;
+  position: absolute;
+  top:70%;
+  left:40.5%;
+}
+
+#submit_add_btn:hover{
+  width : 125px;
+  position: absolute;
+  top:69%;
+  left:39.5%;
+}
+
+
+
+#Add_successfully{
+  position: absolute;
+  top:35%;
+  left:31.5%;
+}
+
+#restaurant_result_container{
+  position: absolute;
+  top:15%;
+  left:41.5%;
+
+}
+
+#select_btn{
+  width : 115px;
+  position: absolute;
+  top:63%;
+  left:39.5%;
+
+}
+
+#select_btn:hover{
+  width : 125px;
+  position: absolute;
+  top:62%;
+  left:38.5%;
+
+}
+
+
+#please{
+  width : 125px;
+  position: absolute;
+  top:25%;
+  left:62.5%;}
+
+
