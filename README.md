@@ -54,6 +54,9 @@
 >影片內忘了在根目錄和client資料夾npm install了
 >然後正常來講google map會有灰色的浮水印，但我demo的時候不知道為什麼沒有
 
+### Repo連結
+>https://github.com/ChunYu-Wei/finalterm_WhatToEat_GoogleMapApi.git
+
 ### 每位組員之貢獻
 >魏駿宇:All
 
